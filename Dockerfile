@@ -13,6 +13,7 @@ LABEL org.opencontainers.image.authors="CZERTAINLY <support@czertainly.com>"
 
 ENV KC_CACHE_STACK=kubernetes
 ENV KC_DB=postgres
+ENV KC_HTTP_RELATIVE_PATH=/kc
 ENV KC_HEALTH_ENABLED=true
 
 WORKDIR /opt/keycloak
