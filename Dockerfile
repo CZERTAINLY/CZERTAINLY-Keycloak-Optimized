@@ -4,7 +4,7 @@ RUN dnf install --installroot /mnt/rootfs postgresql --releasever 9 --setopt ins
     dnf --installroot /mnt/rootfs clean all && \
     rpm --root /mnt/rootfs -e --nodeps setup
 
-FROM quay.io/keycloak/keycloak:26.1.0-0 AS builder
+FROM quay.io/keycloak/keycloak:26.4.2-0 AS builder
 
 LABEL org.opencontainers.image.authors="CZERTAINLY <support@czertainly.com>"
 
@@ -23,7 +23,7 @@ RUN keytool -genkeypair -storepass password -storetype PKCS12 -keyalg RSA -keysi
 RUN /opt/keycloak/bin/kc.sh build
 
 # build optimized image
-FROM quay.io/keycloak/keycloak:26.1.0-0
+FROM quay.io/keycloak/keycloak:26.4.2-0
 
 COPY --from=builder /opt/keycloak/ /opt/keycloak/
 COPY --from=ubi-micro-build /mnt/rootfs /
